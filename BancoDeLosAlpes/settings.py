@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -78,18 +78,14 @@ WSGI_APPLICATION = 'BancoDeLosAlpes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'monitoring_db',
+        'USER': 'monitoring_user',
+        'PASSWORD': 'isis2503',
+        'HOST': '10.142.0.3',
+        'PORT': '',
     }
 }
-"""    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'name_db',
-        'USER': 'user_db',
-        'PASSWORD': 'user_password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }"""
 
 
 # Password validation
