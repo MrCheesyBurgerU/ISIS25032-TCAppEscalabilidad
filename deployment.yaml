@@ -181,7 +181,7 @@ resources:
           cd /experimento
           sudo git clone https://github.com/MrCheesyBurgerU/ISIS25032-TCAppEscalabilidad.git
           cd ISIS25032-TCAppEscalabilidad
-          sudo git checkout Circuit-Breaker
+          
           sudo pip3 install -r requirements.txt
 - type: compute.v1.instance
   name: cbd-solicitudes-app-b
@@ -215,7 +215,7 @@ resources:
           cd /experimento
           sudo git clone https://github.com/MrCheesyBurgerU/ISIS25032-TCAppEscalabilidad.git
           cd ISIS25032-TCAppEscalabilidad
-          sudo git checkout Circuit-Breaker
+          
           sudo pip3 install -r requirements.txt
 - type: compute.v1.instance
   name: cbd-solicitudes-app-c
@@ -249,7 +249,7 @@ resources:
           cd /experimento
           sudo git clone https://github.com/MrCheesyBurgerU/ISIS25032-TCAppEscalabilidad.git
           cd ISIS25032-TCAppEscalabilidad
-          sudo git checkout Circuit-Breaker
+          
           sudo pip3 install -r requirements.txt
 # banco-alpes app instance
 - type: compute.v1.instance
@@ -283,8 +283,7 @@ resources:
           sudo mkdir /experimento
           cd /experimento
           sudo git clone https://github.com/MrCheesyBurgerU/ISIS25032-TCAppEscalabilidad.git
-          cd ISIS25032-TCAppEscalabilidad
-          sudo git checkout Circuit-Breaker
+          cd ISIS25032-TCAppEscalabilidad 
           sudo pip3 install -r requirements.txt
           sudo python3 manage.py makemigrations
           sudo python3 manage.py migrate
