@@ -9,12 +9,12 @@
 #    - cbd-services-apps-web
 #    - cbd-circuit-breaker
 #    - cbd-circuit-breaker-admin
-#    - cbd-BancoDeLosAlpes-db
+#    - cbd-banco-alpes-db
 # 2. Instancias MVs:
 #    - cbd-kong-instance
 #    - cbd-db-instance (postgreSQL instalado y configurado)
-#    - cbd-solicitudes-app-(a-c) (BancoDeLosAlpes app instalada)
-#    - cbd-BancoDeLosAlpes-app (BancoDeLosAlpes app instalada y ejecutando)
+#    - cbd-solicitudes-app-(a-c) (banco-alpes app instalada)
+#    - cbd-banco-alpes-app (banco-alpes app instalada y ejecutando)
 
 resources:
 # Firewall rules
@@ -74,7 +74,7 @@ resources:
     - IPProtocol: TCP
       ports: 
       - 8001
-- name: cbd-BancoDeLosAlpes-db
+- name: cbd-banco-alpes-db
   type: compute.v1.firewall
   properties:
     network: https://www.googleapis.com/compute/v1/projects/disponiblidadejercicio/global/networks/default
@@ -83,7 +83,7 @@ resources:
     sourceTags: 
     - cbd-services-firewall
     targetTags:
-    - cbd-BancoDeLosAlpes-db
+    - cbd-banco-alpes-db
     allowed:
     - IPProtocol: TCP
       ports: 
@@ -133,7 +133,7 @@ resources:
         type: ONE_TO_ONE_NAT
     tags:
       items: 
-      - cbd-BancoDeLosAlpes-db
+      - cbd-banco-alpes-db
     metadata:
       items:
       - key: startup-script
@@ -141,8 +141,8 @@ resources:
           #!/bin/bash
           sudo apt-get update
           sudo apt-get install -y postgresql postgresql-contrib
-          sudo -u postgres psql -c "CREATE USER BancoDeLosAlpes_user WITH PASSWORD 'isis2503';"
-          sudo -u postgres createdb -O BancoDeLosAlpes_user BancoDeLosAlpes_db
+          sudo -u postgres psql -c "CREATE USER banco-alpes_user WITH PASSWORD 'isis2503';"
+          sudo -u postgres createdb -O banco-alpes_user banco-alpes_db
           echo "host all all 0.0.0.0/0 trust" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
           echo "listen_addresses='*'" | sudo tee -a /etc/postgresql/12/main/postgresql.conf
           echo "max_connections=2000" | sudo tee -a /etc/postgresql/12/main/postgresql.conf
@@ -251,9 +251,9 @@ resources:
           cd ISIS25032-TCAppEscalabilidad
           sudo git checkout Circuit-Breaker
           sudo pip3 install -r requirements.txt
-# BancoDeLosAlpes app instance
+# banco-alpes app instance
 - type: compute.v1.instance
-  name: cbd-BancoDeLosAlpes-app
+  name: cbd-banco-alpes-app
   properties:
     zone: us-central1-a
     machineType: https://www.googleapis.com/compute/v1/projects/disponiblidadejercicio/zones/us-central1-a/machineTypes/e2-micro
