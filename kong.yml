@@ -19,7 +19,7 @@ services:
       - name: solicitudes
         paths:
           - /solicitudes
-          - /solicitudesValidate/
+          - /solicitudcreate/
         strip_path: false
     
 upstreams:
