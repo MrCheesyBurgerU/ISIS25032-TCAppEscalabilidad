@@ -1,12 +1,12 @@
 _format_version: "2.1"
 
 services:
-  - host: BancoDeLosAlpes_upstream
-    name: BancoDeLosAlpes_service
+  - host: banco-alpes_upstream
+    name: banco-alpes_service
     protocol: http
     routes:
       
-      - name: BancoDeLosAlpes
+      - name: banco-alpes
         paths:
           - /
         strip_path: false
@@ -43,9 +43,9 @@ upstreams:
     #      tcp_failures: 0
     #      interval: 0
 
-  - name: BancoDeLosAlpes_upstream
+  - name: banco-alpes_upstream
     targets:
-      - target: <ip-privada-BancoDeLosAlpes-app>:8080
+      - target: <ip-privada-banco-alpes-app>:8080
         weight: 100
 
 
