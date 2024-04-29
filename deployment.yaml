@@ -13,8 +13,8 @@
 # 2. Instancias MVs:
 #    - cbd-kong-instance
 #    - cbd-db-instance (postgreSQL instalado y configurado)
-#    - cbd-solicitudes-app-(a-c) (banco-alpes app instalada)
-#    - cbd-banco-alpes-app (banco-alpes app instalada y ejecutando)
+#    - cbd-solicitudes-app-(a-c) (BancoDeLosAlpes app instalada)
+#    - cbd-banco-alpes-app (BancoDeLosAlpes app instalada y ejecutando)
 
 resources:
 # Firewall rules
@@ -104,7 +104,7 @@ resources:
         sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
     networkInterfaces:
     - network: https://www.googleapis.com/compute/v1/projects/disponiblidadejercicio/global/networks/default
-      networkIP: 10.128.0.51
+      networkIP: 10.142.0.3
       accessConfigs:
       - name: External NAT
         type: ONE_TO_ONE_NAT
@@ -141,8 +141,8 @@ resources:
           #!/bin/bash
           sudo apt-get update
           sudo apt-get install -y postgresql postgresql-contrib
-          sudo -u postgres psql -c "CREATE USER banco-alpes_user WITH PASSWORD 'isis2503';"
-          sudo -u postgres createdb -O banco-alpes_user banco-alpes_db
+          sudo -u postgres psql -c "CREATE USER monitoring_user WITH PASSWORD 'isis2503';"
+          sudo -u postgres createdb -O monitoring_user monitoring_db
           echo "host all all 0.0.0.0/0 trust" | sudo tee -a /etc/postgresql/12/main/pg_hba.conf
           echo "listen_addresses='*'" | sudo tee -a /etc/postgresql/12/main/postgresql.conf
           echo "max_connections=2000" | sudo tee -a /etc/postgresql/12/main/postgresql.conf
